@@ -1,0 +1,38 @@
+body {
+    background-color: #000000; /* background color */
+  }
+  
+  .default-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+  
+  .default-page h1 {
+    color: #3498db; 
+    font-size: 2rem; 
+  }
+
+  /* styles/globals.css */
+body {
+    background-color: #000000; 
+  }
+  
+  .default-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 200vh; 
+  }
+  
+  .default-page h1 {
+    color: #3498db; 
+    font-size: 2rem; 
+    margin-top: 0vh; 
+  }
+
+  table {
+    background-color: white;
+  }
