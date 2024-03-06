@@ -15,7 +15,7 @@ const DataTable = () => {
           throw new Error('Network response was not ok');
         }
         const responseData = await response.json();
-        setSubjects(responseData.data); // Assuming the data is nested under 'data' key
+        setSubjects(responseData.data); // Assuming data is nested under 'data' key
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -55,45 +55,58 @@ const DataTable = () => {
 
   return (
     <div>
-      <h2>Subject Table</h2>
-      <input
-        type="text"
-        placeholder="Search by name"
-        value={searchQuery}
-        onChange={handleSearchInputChange}
-      />
-      <select value={genderFilter} onChange={handleGenderFilterChange}>
-        <option value="all">All Genders</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <select value={statusFilter} onChange={handleStatusFilterChange}>
-        <option value="all">All Statuses</option>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
-      </select>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Diagnosis Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredSubjects.map((subject, index) => (
-            <tr key={subject.id}>
-              <td>{subject.name}</td>
-              <td>{subject.age}</td>
-              <td>{subject.gender}</td>
-              <td>{new Date(subject.diagnosisDate).toLocaleDateString()}</td>
-              <td>{subject.status}</td>
+      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Subject Table</h2>
+      <div style={{ marginBottom: '1rem' }}>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+          style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
+        />
+        <select
+          value={genderFilter}
+          onChange={handleGenderFilterChange}
+          style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
+        >
+          <option value="all">Display All Genders</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <select
+          value={statusFilter}
+          onChange={handleStatusFilterChange}
+          style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
+        >
+          <option value="all">Display All Statuses</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div style={{ overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ccc' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#f2f2f2' }}>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Name</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Age</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Gender</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Diagnosis Date</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredSubjects.map((subject, index) => (
+              <tr key={subject.id} style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '#f2f2f2' }}>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.name}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.age}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.gender}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{new Date(subject.diagnosisDate).toLocaleDateString()}</td>
+                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
