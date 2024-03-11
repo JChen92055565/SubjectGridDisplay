@@ -142,7 +142,7 @@ const DataTable = () => {
           onChange={handleSearchInputChange}
           style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
         />
-        <select
+        <select className = "dropdown"
           value={genderFilter}
           onChange={handleGenderFilterChange}
           style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
@@ -151,7 +151,7 @@ const DataTable = () => {
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
-        <select
+        <select className = "dropdown"
           value={statusFilter}
           onChange={handleStatusFilterChange}
           style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
@@ -162,32 +162,32 @@ const DataTable = () => {
         </select>
       </div>
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ccc' }}>
-          <thead>
-            <tr style={{ backgroundColor: '#f2f2f2' }}>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Name</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem', cursor: 'pointer' }} onClick={handleAgeSort}>
-                Age {ageSortDirection === 'asc' ? '↑' : ageSortDirection === 'dsc' ? '↓' : ''}
-              </th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Gender</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem', cursor: 'pointer' }} onClick = {handleDateSort}>
-                Diagnosis Date {dateSortDirection === 'asc' ? '↑': dateSortDirection === 'dsc' ? '↓': ''}
-                </th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredSubjects.map((subject, index) => (
-              <tr key={subject.id} style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '#f2f2f2' }}>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.name}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.age}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.gender}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{new Date(subject.diagnosisDate).toLocaleDateString()}</td>
-                <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <table className="hoverbox" style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ccc' }}>
+  <thead>
+    <tr style={{ backgroundColor: '#f2f2f2' }}>
+      <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Name</th>
+      <th style={{ border: '1px solid #ccc', padding: '0.5rem', width: '80px', cursor: 'pointer' }} onClick={handleAgeSort}>
+        Age <span style={{ fontSize: '12px' }}>{ageSortDirection === 'asc' ? '↑' : ageSortDirection === 'dsc' ? '↓' : ''}</span>
+      </th>
+      <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Gender</th>
+      <th style={{ border: '1px solid #ccc', padding: '0.5rem', width: '120px', cursor: 'pointer' }} onClick={handleDateSort}>
+        Diagnosis Date <span style={{ fontSize: '12px' }}>{dateSortDirection === 'asc' ? '↑' : dateSortDirection === 'dsc' ? '↓' : ''}</span>
+      </th>
+      <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredSubjects.map((subject, index) => (
+      <tr key={subject.id} style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '#f2f2f2' }}>
+        <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.name}</td>
+        <td style={{ border: '1px solid #ccc', padding: '0.5rem', width: '80px' }}>{subject.age}</td>
+        <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.gender}</td>
+        <td style={{ border: '1px solid #ccc', padding: '0.5rem', width: '120px' }}>{new Date(subject.diagnosisDate).toLocaleDateString()}</td>
+        <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{subject.status}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
       </div>
     </div>
   );

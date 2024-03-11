@@ -1,68 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
 body {
-    background-color: #000000; /* background color */
-  }
-  
-  .default-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-  }
-  
+    background-color: #1a1a1a; 
+    color: black; 
+    font-family: 'Open Sans', sans-serif; 
+}
 
-  /* styles/globals.css */
-body {
-    background-color: #000000; 
-  }
-  
-  .default-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    align-items: center;
-    height: 200vh; 
-  }
-  
-  .default-page h1 {
-    color: green; 
-    font-size: 2rem; 
-    margin-top: 3vh; 
-  }
-
-  table {
-    background-color: white;
-  }
-
-
-  .whiteText {
-    color: white;
-  }
-
-  body {
-    background-color: #000000; 
+.Header {
+  font-size: 2rem; 
+  text-align: center;
+  padding: 1rem;
+  border: 2px solid white;
+  border-radius: 8px; 
+  margin-bottom: 20px;
 }
 
 .default-page {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
-    height: 200vh; 
+    height: 200vh;
 }
 
 .default-page h1 {
-    color: white; 
-    font-size: 2rem; 
-    margin-top: 3vh; 
+    color: white;
+    font-size: 2rem;
+    margin-top: 3vh;
 }
 
 table {
-  background-color: white;
+    background-color: #333333; 
+    color: black; 
 }
 
-/* Table header styles */
-th {
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.dropdown:hover,
+.dropdown:focus {
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); 
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0,0,0,0.15); 
+    padding: 0.5rem 0;
 }
