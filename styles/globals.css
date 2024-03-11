@@ -9,10 +9,6 @@ body {
     height: 100vh; 
   }
   
-  .default-page h1 {
-    color: #3498db; 
-    font-size: 2rem; 
-  }
 
   /* styles/globals.css */
 body {
@@ -28,9 +24,9 @@ body {
   }
   
   .default-page h1 {
-    color: #3498db; 
+    color: green; 
     font-size: 2rem; 
-    margin-top: 0vh; 
+    margin-top: 3vh; 
   }
 
   table {
@@ -41,3 +37,32 @@ body {
   .whiteText {
     color: white;
   }
+
+  body {
+    background-color: #000000; 
+}
+
+.default-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 200vh; 
+}
+
+.default-page h1 {
+    color: white; 
+    font-size: 2rem; 
+    margin-top: 3vh; 
+}
+
+table {
+  background-color: white;
+}
+
+/* Table header styles */
+th {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}

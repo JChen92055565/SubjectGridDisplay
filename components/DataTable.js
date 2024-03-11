@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
+
 const DataTable = () => {
-  const [subjects, setSubjects] = useState([]);
+
+  //Constants 
+
+  const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [genderFilter, setGenderFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [filteredSubjects, setFilteredSubjects] = useState([]);
+  const [ageSortDirection, setAgeSortDirection] = useState('');
+  const [dateSortDirection, setDateSortDirection] = useState('');
+
+
+  //logic for fetching data initially
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      try
+      {
         const response = await fetch('https://055d8281-4c59-4576-9474-9b4840b30078.mock.pstmn.io/subjects');
-        if (!response.ok) {
+        if (!response.ok) 
+        {
           throw new Error('Network response was not ok');
         }
         const responseData = await response.json();
-        setSubjects(responseData.data); // Assuming data is nested under 'data' key
-      } catch (error) {
+        setData(responseData.data); // Assuming data is nested under 'data' key
+      } 
+      catch (error) 
+      {
         console.error('Error fetching data:', error);
       }
     };
@@ -24,38 +37,103 @@ const DataTable = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    // Filter subjects based on the search query, gender, and status
-    let filtered = subjects.filter(subject =>
-      subject.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
 
-    if (genderFilter !== 'all') {
+  //Logic for handling filtering and sorting changes
+
+  useEffect(() => {
+    // Logic for filtering table
+    let filtered = data.filter(subject =>
+      subject.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    if (genderFilter !== 'all') 
+    {
       filtered = filtered.filter(subject => subject.gender === genderFilter);
     }
 
-    if (statusFilter !== 'all') {
+    if (statusFilter !== 'all') 
+    {
       filtered = filtered.filter(subject => subject.status === statusFilter);
     }
 
-    setFilteredSubjects(filtered);
-  }, [searchQuery, subjects, genderFilter, statusFilter]);
+    // Sorting logic for Age column
+    if (ageSortDirection === 'asc')
+    {
+      filtered.sort((a, b) => a.age - b.age);
+    } 
+    else if (ageSortDirection === 'dsc')
+    {
+      filtered.sort((a, b) => b.age - a.age);
+    }
 
-  const handleSearchInputChange = event => {
+    // Sorting logic for Diagnosis Date column
+    if (dateSortDirection === 'asc')
+    {
+      filtered.sort((a, b) => new Date(a.diagnosisDate) - new Date(b.diagnosisDate));
+    } 
+    else if (dateSortDirection === 'dsc') 
+    {
+      filtered.sort((a, b) => new Date(b.diagnosisDate) - new Date(a.diagnosisDate));
+    }
+    setFilteredSubjects(filtered);
+  }, [searchQuery, data, genderFilter, statusFilter, ageSortDirection, dateSortDirection]);
+
+  //Logic for handling search
+  const handleSearchInputChange = event => 
+  {
     setSearchQuery(event.target.value);
   };
 
-  const handleGenderFilterChange = event => {
+  //Logic for handling gender filter
+  const handleGenderFilterChange = event => 
+  {
     setGenderFilter(event.target.value);
   };
 
-  const handleStatusFilterChange = event => {
+  //Logic for handling status filter
+  const handleStatusFilterChange = event => 
+  {
     setStatusFilter(event.target.value);
+  };
+
+
+  //Logic for shifting states of handling dates and age sorting direction
+  const handleAgeSort = () => 
+  {
+    setDateSortDirection('')
+    if (ageSortDirection === '') 
+    {
+      setAgeSortDirection('asc');
+    } 
+    else if (ageSortDirection === 'asc')
+    {
+      setAgeSortDirection('dsc');
+    } 
+    else 
+    {
+      setAgeSortDirection('');
+    }
+  };
+
+  const handleDateSort = () => 
+  {
+
+    setAgeSortDirection('');
+    if (dateSortDirection === '')
+    {
+      setDateSortDirection('asc');
+    }
+    else if (dateSortDirection === 'asc')
+    {
+      setDateSortDirection('dsc');
+    }
+    else
+    {
+      setDateSortDirection('');
+    }
   };
 
   return (
     <div>
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Subject Table</h2>
       <div style={{ marginBottom: '1rem' }}>
         <input
           type="text"
@@ -70,8 +148,8 @@ const DataTable = () => {
           style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
         >
           <option value="all">Display All Genders</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
         <select
           value={statusFilter}
@@ -79,8 +157,8 @@ const DataTable = () => {
           style={{ padding: '0.5rem', marginRight: '0.5rem', border: '1px solid #ccc', borderRadius: '4px', outline: 'none' }}
         >
           <option value="all">Display All Statuses</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
         </select>
       </div>
       <div style={{ overflowX: 'auto' }}>
@@ -88,9 +166,13 @@ const DataTable = () => {
           <thead>
             <tr style={{ backgroundColor: '#f2f2f2' }}>
               <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Name</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Age</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem', cursor: 'pointer' }} onClick={handleAgeSort}>
+                Age {ageSortDirection === 'asc' ? '↑' : ageSortDirection === 'dsc' ? '↓' : ''}
+              </th>
               <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Gender</th>
-              <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Diagnosis Date</th>
+              <th style={{ border: '1px solid #ccc', padding: '0.5rem', cursor: 'pointer' }} onClick = {handleDateSort}>
+                Diagnosis Date {dateSortDirection === 'asc' ? '↑': dateSortDirection === 'dsc' ? '↓': ''}
+                </th>
               <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Status</th>
             </tr>
           </thead>
