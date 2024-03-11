@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-
 body {
     background-color: #1a1a1a; 
     color: black; 
-    font-family: 'Open Sans', sans-serif; 
+    font-family: var(--mantine-font-family);
 }
 
+
 .Header {
-  font-size: 2rem; 
-  text-align: center;
-  padding: 1rem;
-  border: 2px solid white;
-  border-radius: 8px; 
-  margin-bottom: 20px;
+    font-size: 2rem; 
+    text-align: center;
+    padding: 1rem;
+    border: 2px solid white;
+    border-radius: 8px; 
+    margin-bottom: 20px;
 }
 
 .default-page {
