@@ -208,7 +208,8 @@ const DataTable = () => {
   <thead>
     <tr style={{ backgroundColor: '#f2f2f2' }}>
       <th style={{ border: '1px solid #ccc', padding: '0.5rem',cursor: 'pointer'}} onClick={handleNameSort}> Name 
-      {nameSortDirection === 'asc' ? '↑' : nameSortDirection === 'dsc' ? '↓' : '(click to sort)'}</th>
+       <span style={{ fontSize: '12px' }}> {nameSortDirection === 'asc' ? '↑' : nameSortDirection === 'dsc' ? '↓' : '(click to sort)'}  </span>
+      </th>
 
       <th style={{ border: '1px solid #ccc', padding: '0.5rem', width: '80px', cursor: 'pointer' }} onClick={handleAgeSort}>
         Age <span style={{ fontSize: '12px' }}>{ageSortDirection === 'asc' ? '↑' : ageSortDirection === 'dsc' ? '↓' : '(click to sort)'}</span>

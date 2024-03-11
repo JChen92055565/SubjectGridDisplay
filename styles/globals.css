@@ -4,7 +4,9 @@ body {
     font-family: var(--mantine-font-family);
 }
 
-
+/*
+**  Styling for header
+*/
 .Header {
     font-size: 2rem; 
     text-align: center;
@@ -14,6 +16,9 @@ body {
     margin-bottom: 20px;
 }
 
+/*
+**  Styling for default page layout
+*/
 .default-page {
     display: flex;
     flex-direction: column;
@@ -22,22 +27,34 @@ body {
     height: 200vh;
 }
 
+/*
+**  Styling for h1 elements within default page
+*/
 .default-page h1 {
     color: white;
     font-size: 2rem;
     margin-top: 3vh;
 }
 
+/*
+**  Styling for tables
+*/
 table {
     background-color: #333333; 
     color: black; 
 }
 
+/*
+**  Styling for dropdown on hover or focus
+*/
 .dropdown:hover,
 .dropdown:focus {
     box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); 
 }
 
+/*
+**  Styling for dropdown menu
+*/
 .dropdown-menu {
     background-color: #fff;
     border-radius: 0.25rem;
